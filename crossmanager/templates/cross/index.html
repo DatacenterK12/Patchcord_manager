@@ -3,37 +3,33 @@
 {% block content %}
 {% block title %}<title>Остатки кроссов</title>{% endblock %}
 <div class="container-fluid">
-    <div class="text-center">
-        <div class="row">
-            <div>
-                <table>
+    <div class="row">
+        <table>
+            <tr>
+                <th>Тип</th>
+                <th>10M</th>
+                <th>15M</th>
+                <th>20M</th>
+                <th>25M</th>
+                <th>30M</th>
+                <th>35M</th>
+            </tr>
+            {% for cross in cross_data%}
                     <tr>
-                        <th>Тип</th>
-                        <th>10M</th>
-                        <th>15M</th>
-                        <th>20M</th>
-                        <th>25M</th>
-                        <th>30M</th>
-                        <th>35M</th>
-                    </tr>
-                    {% for cross in cross_data%}
-                            <tr>
-                                <td>{{cross.name}}</td>
-                                <td>{{cross.ten}}</td>
-                                <td>{{cross.fifteen}}</td>
-                                <td>{{cross.twenty}}</td>
-                                <td>{{cross.twentyfive}}</td>
-                                <td>{{cross.thirty}}</td>
-                                <td>{{cross.thirtyfive}}</td>
-                            </tr> <!--ряд с ячейками тела таблицы-->
-                            <br>
-                    {%endfor%}
-                </table>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <img src={% static "popcat.gif" %}>
-        </div>
+                        <td>{{cross.name}}</td>
+                        <td>{{cross.ten}}</td>
+                        <td>{{cross.fifteen}}</td>
+                        <td>{{cross.twenty}}</td>
+                        <td>{{cross.twentyfive}}</td>
+                        <td>{{cross.thirty}}</td>
+                        <td>{{cross.thirtyfive}}</td>
+                    </tr> <!--ряд с ячейками тела таблицы-->
+                    <br>
+            {%endfor%}
+        </table>
+    </div>
+    <div class="row">
+        <img src={% static "popca2t.gif" %}>
     </div>
 </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render
+from flexa import send_mail
 
 from .models import Cross
 
@@ -12,24 +13,42 @@ def index(request):
     return render(request, "cross/index.html", context)
 
 
-def take_cross(request, name, len):
+def take_cross(request, name, length):
     cross = get_object_or_404(Cross, name=name)
-    if len == "ten":
+    if length == "ten":
         cross.ten = cross.ten - 1
-    elif len == "fifteen":
+        length = 10
+        if cross.ten <= 5:
+            send_mail(name, length)
+    elif length == "fifteen":
         cross.fifteen = cross.fifteen - 1
-    elif len == "twenty":
+        length = 15
+        if cross.fifteen <= 5:
+            send_mail(name, length)
+    elif length == "twenty":
         cross.twenty = cross.twenty - 1
-    elif len == "twentyfive":
+        length = 20
+        if cross.twenty <= 5:
+            send_mail(name, length)
+    elif length == "twentyfive":
         cross.twentyfive = cross.twentyfive - 1
-    elif len == "thirty":
+        length = 25
+        if cross.twentyfive <= 5:
+            send_mail(name, length)
+    elif length == "thirty":
         cross.thirty = cross.thirty - 1
-    elif len == "thirtyfive":
+        length = 30
+        if cross.thirty <= 5:
+            send_mail(name, length)
+    elif length == "thirtyfive":
         cross.thirtyfive = cross.thirtyfive - 1
+        length = 35
+        if cross.thirtyfive <= 5:
+            send_mail(name, length)
     cross.save()
     context = {
         "name": name,
         "cross": cross,
-        "len": len,
+        "len": length,
     }
     return render(request, "cross/take_cross.html", context)
