@@ -1,4 +1,4 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -44,3 +44,16 @@ class Cross(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(ten__gte=0)
+                & models.Q(fifteen__gte=0)
+                & models.Q(twenty__gte=0)
+                & models.Q(twentyfive__gte=0)
+                & models.Q(thirty__gte=0)
+                & models.Q(thirtyfive__gte=0),
+                name="fields not minus",
+            ),
+        ]

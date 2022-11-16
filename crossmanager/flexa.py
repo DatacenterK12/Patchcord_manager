@@ -15,7 +15,7 @@ def send_mail(cross, length):
     print(message)
     smpObj.sendmail(
         "flexa@k12.spb.ru",
-        "noc@k12.spb.ru",
+        "ep@k12.spb.ru",
         message,
     )
 
