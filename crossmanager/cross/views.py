@@ -1,20 +1,25 @@
 from django.shortcuts import get_object_or_404, render
 from flexa import send_mail
 
-from .models import Cross
+from .models import Cross, Mmr
 
 
 # Create your views here.
 def index(request):
     cross_data = Cross.objects.all()
+    mmr_data = Mmr.objects.all()
     context = {
         "cross_data": cross_data,
+        "mmr_data": mmr_data,
     }
     return render(request, "cross/index.html", context)
 
 
 def take_cross(request, name, length):
-    cross = get_object_or_404(Cross, name=name)
+    if name != "MMR":
+        cross = get_object_or_404(Cross, name=name)
+    else:
+        cross = get_object_or_404(Mmr, name=name)
     if length == "ten":
         cross.ten = cross.ten - 1
         length = 10
@@ -45,6 +50,27 @@ def take_cross(request, name, length):
         length = 35
         if cross.thirtyfive <= 5:
             send_mail(name, length)
+    elif length == "one":
+        cross.one = cross.one - 1
+        length = 1
+        if cross.one <= 5:
+            send_mail(name, length)
+    elif length == "two":
+        cross.two = cross.two - 1
+        length = 2
+        if cross.two <= 5:
+            send_mail(name, length)
+    elif length == "three":
+        cross.three = cross.three - 1
+        length = 3
+        if cross.three <= 5:
+            send_mail(name, length)
+    elif length == "five":
+        cross.five = cross.five - 1
+        length = 5
+        if cross.five <= 5:
+            send_mail(name, length)
+
     cross.save()
     context = {
         "name": name,

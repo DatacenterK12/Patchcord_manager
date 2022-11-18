@@ -2,34 +2,58 @@
 {% load static %}
 {% block content %}
 {% block title %}<title>Остатки кроссов</title>{% endblock %}
-<div class="container-fluid">
-    <div class="row">
-        <table>
-            <tr>
-                <th>Тип</th>
-                <th>10M</th>
-                <th>15M</th>
-                <th>20M</th>
-                <th>25M</th>
-                <th>30M</th>
-                <th>35M</th>
-            </tr>
-            {% for cross in cross_data%}
+<div class="text-center">
+    <div class="container-fluid">
+            <div class="row">
+                <table>
                     <tr>
-                        <td>{{cross.name}}</td>
-                        <td>{{cross.ten}}</td>
-                        <td>{{cross.fifteen}}</td>
-                        <td>{{cross.twenty}}</td>
-                        <td>{{cross.twentyfive}}</td>
-                        <td>{{cross.thirty}}</td>
-                        <td>{{cross.thirtyfive}}</td>
-                    </tr> <!--ряд с ячейками тела таблицы-->
-                    <br>
-            {%endfor%}
-        </table>
-    </div>
-    <div class="row">
-        <img src={% static "popca2t.gif" %}>
+                        <th>Тип</th>
+                        <th>10M</th>
+                        <th>15M</th>
+                        <th>20M</th>
+                        <th>25M</th>
+                        <th>30M</th>
+                        <th>35M</th>
+                    </tr>
+                    {% for cross in cross_data%}
+                            <tr>
+                                <td>{{cross.name}}</td>
+                                <td>{{cross.ten}}</td>
+                                <td>{{cross.fifteen}}</td>
+                                <td>{{cross.twenty}}</td>
+                                <td>{{cross.twentyfive}}</td>
+                                <td>{{cross.thirty}}</td>
+                                <td>{{cross.thirtyfive}}</td>
+                            </tr> <!--ряд с ячейками тела таблицы-->
+                    {%endfor%}
+                </table>
+            </div>
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Тип</th>
+                        <th>1M</th>
+                        <th>2M</th>
+                        <th>3M</th>
+                        <th>5M</th>
+                    </tr>
+                    {% for mmr in mmr_data %}
+                            <tr>
+                                <td>{{mmr.name}}</td>
+                                <td>{{mmr.one}}</td>
+                                <td>{{mmr.two}}</td>
+                                <td>{{mmr.three}}</td>
+                                <td>{{mmr.five}}</td>
+                            </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <img src={% static "popca2t.gif" %} style="width: 10em">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

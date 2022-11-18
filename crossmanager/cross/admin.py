@@ -25,6 +25,7 @@ class MmrAdmin(admin.ModelAdmin):
         "one",
         "two",
         "three",
+        "five",
     )
     search_fields = ("name",)
     empty_value_display = "-пусто-"
