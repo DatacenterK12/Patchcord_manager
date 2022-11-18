@@ -1,11 +1,23 @@
+import os
 import smtplib
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATA = {
+    "smtp_server": os.getenv("SMTP_SERVER"),
+    "email_fl": os.getenv("EMAIL_FL"),
+    "email_noc": os.getenv("EMAIL_NOC"),
+    "password": os.getenv("PASSWORD"),
+}
+
 smpObj = smtplib.SMTP(
-    "mail.nic.ru",
+    DATA["smtp_server"],
     587,
 )
 smpObj.starttls()
-smpObj.login("flexa@k12.spb.ru", "RG8tku95")
+smpObj.login(DATA["email_fl"], DATA["password"])
 
 
 def send_mail(cross, length):
@@ -14,8 +26,8 @@ def send_mail(cross, length):
     message = "Subject: {}\n\n{}".format(SUBJECT, TEXT)
     print(message)
     smpObj.sendmail(
-        "flexa@k12.spb.ru",
-        "ep@k12.spb.ru",
+        DATA["email_fl"],
+        DATA["email_noc"],
         message,
     )
 

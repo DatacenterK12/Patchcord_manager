@@ -28,8 +28,7 @@ def take_cross(request, name, length):
     elif length == "fifteen":
         cross.fifteen = cross.fifteen - 1
         length = 15
-        if cross.fifteen <= 5:
-            send_mail(name, length)
+
     elif length == "twenty":
         cross.twenty = cross.twenty - 1
         length = 20
