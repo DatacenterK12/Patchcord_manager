@@ -57,3 +57,42 @@ class Cross(models.Model):
                 name="fields not minus",
             ),
         ]
+
+
+class Mmr(models.Model):
+    name = models.CharField(max_length=5)
+    one = models.IntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+        ],
+    )
+    two = models.IntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+        ],
+    )
+    three = models.IntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+        ],
+    )
+    five = models.IntegerField(
+        default=0,
+        validators=[
+            MinValueValidator(0),
+        ],
+    )
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(one__gte=0)
+                & models.Q(two__gte=0)
+                & models.Q(three__gte=0)
+                & models.Q(five__gte=0),
+                name="fields not minus",
+            ),
+        ]
