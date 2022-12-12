@@ -1,24 +1,103 @@
 {% load static %}
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'cross:index' %}">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="nav">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'cross:index' %}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'cross:index' %}">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="{% url 'cross:index' %}" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'cross:index' %}">CrossManager</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'cross:index' %}">Таблица</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            SC-SC
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-SC" length="ten" %}" >10M</a></li>
+            <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-SC" length="fifteen" %}" >15M</a></li>
+            <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-SC" length="twenty" %}" >20M</a></li>
+            <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-SC" length="twentyfive" %}" >25M</a></li>
+            <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-SC" length="thirty" %}" >30M</a></li>
+            <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-SC" length="thirtyfive" %}" >35M</a></li>
+          </ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              SC-LC
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-LC" length="ten" %}" >10M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-LC" length="fifteen" %}" >15M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-LC" length="twenty" %}" >20M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-LC" length="twentyfive" %}" >25M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-LC" length="thirty" %}" >30M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="SC-LC" length="thirtyfive" %}" >35M</a></li>
             </ul>
-          </div>
-        </div>
-      </nav>
-</header>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              LC-LC
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-LC" length="ten" %}" >10M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-LC" length="fifteen" %}" >15M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-LC" length="twenty" %}" >20M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-LC" length="twentyfive" %}" >25M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-LC" length="thirty" %}" >30M</a></li>
+              <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-LC" length="thirtyfive" %}" >35M</a></li>
+            </ul>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                LC-FC
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-FC" length="ten" %}" >10M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-FC" length="fifteen" %}" >15M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-FC" length="twenty" %}" >20M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-FC" length="twentyfive" %}" >25M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-FC" length="thirty" %}" >30M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="LC-FC" length="thirtyfive" %}" >35M</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                FC-SC
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-SC" length="ten" %}" >10M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-SC" length="fifteen" %}" >15M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-SC" length="twenty" %}" >20M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-SC" length="twentyfive" %}" >25M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-SC" length="thirty" %}" >30M</a></li>
+                <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-SC" length="thirtyfive" %}" >35M</a></li>
+              </ul>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  FC-FC
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-FC" length="ten" %}" >10M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-FC" length="fifteen" %}" >15M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-FC" length="twenty" %}" >20M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-FC" length="twentyfive" %}" >25M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-FC" length="thirty" %}" >30M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="FC-FC" length="thirtyfive" %}" >35M</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  MMR
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="MMR" length="onew" %}" >1M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="MMR" length="two" %}" >2M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="MMR" length="three" %}" >3M</a></li>
+                  <li><a class="dropdown-item" href="{% url 'cross:take_cross' name="MMR" length="five" %}" >5M</a></li>
+                </ul>
+              </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

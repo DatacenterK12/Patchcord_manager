@@ -20,6 +20,7 @@ def take_cross(request, name, length):
         cross = get_object_or_404(Cross, name=name)
     else:
         cross = get_object_or_404(Mmr, name=name)
+
     if length == "ten":
         cross.ten = cross.ten - 1
         length = 10
