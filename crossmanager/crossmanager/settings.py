@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
-    "192.168.0.246",
+    "192.168.7.174",
     "127.0.0.1",
     "172.10.10.160",
 ]
@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "cross.apps.CrossConfig",
+    "api.apps.ApiConfig",
 ]
 
 MIDDLEWARE = [
