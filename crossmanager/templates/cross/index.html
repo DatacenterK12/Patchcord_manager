@@ -18,12 +18,48 @@
                     {% for cross in cross_data%}
                             <tr>
                                 <td>{{cross.name}}</td>
-                                <td>{{cross.ten}}</td>
-                                <td>{{cross.fifteen}}</td>
-                                <td>{{cross.twenty}}</td>
-                                <td>{{cross.twentyfive}}</td>
-                                <td>{{cross.thirty}}</td>
-                                <td>{{cross.thirtyfive}}</td>
+                                <td>
+                                    {%if cross.ten <= 5%}
+                                        <allert>{{cross.ten}}</allert>
+                                    {%else%}
+                                        {{cross.ten}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.fifteen <= 5%}
+                                        <allert>{{cross.fifteen}}</allert>
+                                    {%else%}
+                                        {{cross.fifteen}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.twenty <= 5%}
+                                        <allert>{{cross.twenty}}</allert>
+                                    {%else%}
+                                        {{cross.twenty}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.twentyfive <= 5%}
+                                        <allert>{{cross.twentyfive}}</allert>
+                                    {%else%}
+                                        {{cross.twentyfive}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.thirty <= 5%}
+                                        <allert>{{cross.thirty}}</allert>
+                                    {%else%}
+                                        {{cross.thirty}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.thirtyfive <= 5%}
+                                        <allert>{{cross.thirtyfive}}</allert>
+                                    {%else%}
+                                        {{cross.thirtyfive}}
+                                    {%endif%}
+                                </td>
                             </tr> <!--ряд с ячейками тела таблицы-->
                     {%endfor%}
                 </table>
@@ -32,18 +68,26 @@
                 <table>
                     <tr>
                         <th>Тип</th>
-                        <th>1M</th>
-                        <th>2M</th>
                         <th>3M</th>
                         <th>5M</th>
                     </tr>
                     {% for mmr in mmr_data %}
                             <tr>
                                 <td>{{mmr.name}}</td>
-                                <td>{{mmr.one}}</td>
-                                <td>{{mmr.two}}</td>
-                                <td>{{mmr.three}}</td>
-                                <td>{{mmr.five}}</td>
+                                <td>
+                                    {%if mmr.three <= 5%}
+                                        <allert>{{mmr.three}}</allert>
+                                    {%else%}
+                                        {{mmr.three}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if mmr.five <= 5%}
+                                        <allert>{{mmr.five}}</allert>
+                                    {%else%}
+                                        {{mmr.five}}
+                                    {%endif%}
+                                </td>
                             </tr>
                     {% endfor %}
                 </table>
