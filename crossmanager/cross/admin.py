@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cross, Mmr
+from .models import Cross, Mmr, Statistic
 
 # Register your models here.
 
@@ -31,5 +31,20 @@ class MmrAdmin(admin.ModelAdmin):
     empty_value_display = "-пусто-"
 
 
+class StatisticAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "ten",
+        "fifteen",
+        "twenty",
+        "twentyfive",
+        "thirty",
+        "thirtyfive",
+    )
+    search_fields = ("name",)
+    empty_value_display = "-пусто-"
+
+
+admin.site.register(Statistic, StatisticAdmin)
 admin.site.register(Cross, CrossAdmin)
 admin.site.register(Mmr, MmrAdmin)
