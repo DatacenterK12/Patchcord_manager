@@ -57,13 +57,13 @@ def take_cross(request, name, length):
         cross.one -= 1
         length = 1
     elif length == "two":
-        cross.ten -= 1
+        cross.two -= 1
         length = 2
     elif length == "three":
-        cross.ten -= 1
+        cross.three -= 1
         length = 3
     elif length == "five":
-        cross.ten -= 1
+        cross.five -= 1
         length = 5
 
     cross.save()
