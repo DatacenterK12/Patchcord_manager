@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block title %}<title>Остатки кроссов</title>{% endblock %}
+<div class="text-center">
+    <div class="container-fluid">
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Тип</th>
+                        <th>10M</th>
+                        <th>15M</th>
+                        <th>20M</th>
+                        <th>25M</th>
+                        <th>30M</th>
+                        <th>35M</th>
+                    </tr>
+                    {% for cross in stat_data%}
+                            <tr>
+                                <td>{{cross.name}}</td>
+                                <td>
+                                    {%if cross.ten <= 5%}
+                                        <allert>{{cross.ten}}</allert>
+                                    {%else%}
+                                        {{cross.ten}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.fifteen <= 5%}
+                                        <allert>{{cross.fifteen}}</allert>
+                                    {%else%}
+                                        {{cross.fifteen}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.twenty <= 5%}
+                                        <allert>{{cross.twenty}}</allert>
+                                    {%else%}
+                                        {{cross.twenty}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.twentyfive <= 5%}
+                                        <allert>{{cross.twentyfive}}</allert>
+                                    {%else%}
+                                        {{cross.twentyfive}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.thirty <= 5%}
+                                        <allert>{{cross.thirty}}</allert>
+                                    {%else%}
+                                        {{cross.thirty}}
+                                    {%endif%}
+                                </td>
+                                <td>
+                                    {%if cross.thirtyfive <= 5%}
+                                        <allert>{{cross.thirtyfive}}</allert>
+                                    {%else%}
+                                        {{cross.thirtyfive}}
+                                    {%endif%}
+                                </td>
+                            </tr> <!--ряд с ячейками тела таблицы-->
+                    {%endfor%}
+                </table>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <img src={% static "kit.gif" %} style="width: 10em">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
