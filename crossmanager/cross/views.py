@@ -67,7 +67,8 @@ def take_cross(request, name, length):
         length = 5
 
     cross.save()
-    stat.save()
+    if name != "MMR":
+        stat.save()
     context = {
         "name": name,
         "cross": cross,
