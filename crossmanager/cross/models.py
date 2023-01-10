@@ -46,6 +46,8 @@ class Cross(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = "Патчорд"
+        verbose_name_plural = "Патчорды"
         constraints = [
             models.CheckConstraint(
                 check=models.Q(ten__gte=0)
@@ -87,6 +89,8 @@ class Mmr(models.Model):
     )
 
     class Meta:
+        verbose_name = "Патчорд MMR"
+        verbose_name_plural = "Патчорды MMR"
         constraints = [
             models.CheckConstraint(
                 check=models.Q(one__gte=0)
@@ -141,6 +145,8 @@ class Statistic(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = "Статистика"
+        verbose_name_plural = "Статистика"
         constraints = [
             models.CheckConstraint(
                 check=models.Q(ten__gte=0)
