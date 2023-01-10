@@ -152,3 +152,18 @@ class Statistic(models.Model):
                 name="fields not minus",
             ),
         ]
+
+
+class New_stat(models.Model):
+    name = models.CharField(max_length=5)
+    length = models.IntegerField(default=0)
+    date = models.DateField(
+        "дата",
+        auto_now_add=True,
+        db_index=True,
+    )
+
+    class Meta:
+        ordering = ["-date"]
+        verbose_name = "Вычитание"
+        verbose_name_plural = "Вычитания"
