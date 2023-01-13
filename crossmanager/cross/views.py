@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 
-from .models import Cross, Mmr, New_stat, Statistic
+from .models import Cross, History, Mmr, Statistic
 
 DATA_PAGINATOR = 10
 
@@ -16,16 +16,26 @@ def paginator(request, pages, data_list):
 def index(request):
     cross_data = Cross.objects.all()
     mmr_data = Mmr.objects.all()
+    month_data = [1, 2, 3, 4, 5, 6]
+    # {
+    #     "scsc": 1,
+    #     "sclc": 2,
+    #     "lclc": 3,
+    #     "lcfc": 4,
+    #     "fcfc": 5,
+    #     "fcsc": 6,
+    # }
     context = {
         "cross_data": cross_data,
         "mmr_data": mmr_data,
+        "month_data": month_data,
     }
     return render(request, "cross/index.html", context)
 
 
 def statistic(request):
     stat_data = Statistic.objects.all()
-    new_stat_data = New_stat.objects.all()
+    new_stat_data = History.objects.all()
     context = {
         "stat_data": stat_data,
         "new_stat_data": paginator(request, DATA_PAGINATOR, new_stat_data),
@@ -86,7 +96,7 @@ def take_cross(request, name, length):
         cross.five -= 1
         length = 5
 
-    New_stat.objects.create(name=name, length=length)
+    History.objects.create(name=name, length=length)
     cross.save()
     if name != "MMR":
         stat.save()

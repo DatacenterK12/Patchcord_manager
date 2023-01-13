@@ -160,7 +160,7 @@ class Statistic(models.Model):
         ]
 
 
-class New_stat(models.Model):
+class History(models.Model):
     name = models.CharField(max_length=5)
     length = models.IntegerField(default=0)
     date = models.DateField(

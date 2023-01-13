@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Cross, Mmr, New_stat, Statistic
+from .models import Cross, History, Mmr, Statistic
 
 # Register your models here.
 
@@ -45,7 +45,7 @@ class StatisticAdmin(admin.ModelAdmin):
     empty_value_display = "-пусто-"
 
 
-class NewStatAdmin(admin.ModelAdmin):
+class HistoryAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "length",
@@ -61,4 +61,4 @@ class NewStatAdmin(admin.ModelAdmin):
 admin.site.register(Statistic, StatisticAdmin)
 admin.site.register(Cross, CrossAdmin)
 admin.site.register(Mmr, MmrAdmin)
-admin.site.register(New_stat, NewStatAdmin)
+admin.site.register(History, HistoryAdmin)

@@ -4,6 +4,7 @@
 {% block title %}<title>Остатки кроссов</title>{% endblock %}
 <div class="text-center">
     <div class="container-fluid">
+        <span id="test"> 100 </span>
             <div class="row">
                 <table>
                     <tr>
@@ -74,24 +75,54 @@
     </div>
     <div class="container-fluid">
         <div class="text-center">
-            <div class="row">
-                <table>
-                    <tr>
-                        <th>Тип</th>
-                        <th>Длинна</th>
-                        <th>Дата</th>
-                    </tr>
-                    {%for cross in new_stat_data%}
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div style="width: 500px;">
+                        <canvas id="myChart"> </canvas>
+                    </div>
+                </div>
+                <div class="col-md-auto">
+                    <table>
                         <tr>
-                            <td>{{cross.name}}</td>
-                            <td>{{cross.length}}</td>
-                            <td>{{cross.date}}</td>
+                            <th>Тип</th>
+                            <th>Длинна</th>
+                            <th>Дата</th>
                         </tr>
-                    {%endfor%}
-                </table>
+                        {%for cross in new_stat_data%}
+                            <tr>
+                                <td>{{cross.name}}</td>
+                                <td>{{cross.length}}</td>
+                                <td>{{cross.date}}</td>
+                            </tr>
+                        {%endfor%}
+                    </table>
+                </div>
             </div>
         </div>
-        {% include 'includes/paginator.html' %}
+        <div class='fixed-bottom'>
+            {% include 'includes/paginator.html' %}
+        </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    var data = document.getElementById('test').innerHTML;
+    var dataint = Number.parseInt(data);
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['SC-SC', 'SC-LC', 'LC-LC', 'LC-FC', 'FC-FC', 'FC-SC'],
+        datasets: [{
+          label: '# было использовано',
+          data: [dataint, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+      }
+    });
+</script>
 {% endblock %}
