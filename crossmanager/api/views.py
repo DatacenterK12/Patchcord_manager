@@ -1,13 +1,12 @@
 # Create your views here.
-from cross.models import Cross, History, Mmr, Statistic
-from rest_framework import viewsets
+from datetime import datetime, timedelta
 
-from .serializers import (
-    CrossSerializer,
-    HistoryCountSerializer,
-    MmrSerializer,
-    StatisticSerializer,
-)
+from cross.models import Cross, History, Mmr
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .serializers import CrossSerializer, HistoryCountSerializer, MmrSerializer
 
 
 class CrossViewSet(viewsets.ModelViewSet):
@@ -24,15 +23,43 @@ class MmrViewSet(viewsets.ModelViewSet):
     serializer_class = MmrSerializer
 
 
-class StatisticViewSet(viewsets.ReadOnlyModelViewSet):
-    """Возвращает общую статистику по кросам"""
-
-    queryset = Statistic.objects.all()
-    serializer_class = StatisticSerializer
-
-
-class HistoryVeiwSet(viewsets.ReadOnlyModelViewSet):
+class HistoryAPIView(APIView):
     """Возвращает историю использования патчкордов"""
 
-    queryset = History.objects.filter(pk=1)
-    serializer_class = HistoryCountSerializer
+    def get(self, request):
+        date = datetime.now() - timedelta(days=31)
+        count_fulltime = {
+            "SC-SC": History.objects.filter(name="SC-SC").count(),
+            "SC-LC": History.objects.filter(name="SC-LC").count(),
+            "LC-LC": History.objects.filter(name="LC-LC").count(),
+            "LC-FC": History.objects.filter(name="LC-FC").count(),
+            "FC-SC": History.objects.filter(name="FC-SC").count(),
+            "FC-FC": History.objects.filter(name="FC-FC").count(),
+        }
+        count_month = {
+            "SC-SC": History.objects.filter(name="SC-SC")
+            .filter(date__gt=date)
+            .count(),
+            "SC-LC": History.objects.filter(name="SC-LC")
+            .filter(date__gt=date)
+            .count(),
+            "LC-LC": History.objects.filter(name="LC-LC")
+            .filter(date__gt=date)
+            .count(),
+            "LC-FC": History.objects.filter(name="LC-FC")
+            .filter(date__gt=date)
+            .count(),
+            "FC-SC": History.objects.filter(name="FC-SC")
+            .filter(date__gt=date)
+            .count(),
+            "FC-FC": History.objects.filter(name="FC-FC")
+            .filter(date__gt=date)
+            .count(),
+        }
+
+        ser = {
+            "count_fulltime": count_fulltime,
+            "count_month": count_month,
+        }
+        serializer = HistoryCountSerializer(ser)
+        return Response(serializer.data)

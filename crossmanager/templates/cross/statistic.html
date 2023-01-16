@@ -109,19 +109,20 @@
 
 <script>
     const ctx = document.getElementById('myChart');
-    var data = await fetch("")
+    var url = "http://127.0.0.1:8000/api/v1/history/";
+    let response = fetch(url);
     new Chart(ctx, {
-      type: 'bar',
-      data: {
+    type: 'bar',
+    data: {
         labels: ['SC-SC', 'SC-LC', 'LC-LC', 'LC-FC', 'FC-FC', 'FC-SC'],
         datasets: [{
-          label: '# было использовано',
-          data: [dataint, 19, 3, 5, 2, 3],
-          borderWidth: 1
+        label: '# было использовано',
+        data: [19, 3, 5, 2, 3,1],
+        borderWidth: 1
         }]
-      },
-      options: {
-      }
+    },
+    options: {
+    }
     });
 </script>
 {% endblock %}

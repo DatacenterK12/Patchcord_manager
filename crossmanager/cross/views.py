@@ -16,19 +16,9 @@ def paginator(request, pages, data_list):
 def index(request):
     cross_data = Cross.objects.all()
     mmr_data = Mmr.objects.all()
-    month_data = [1, 2, 3, 4, 5, 6]
-    # {
-    #     "scsc": 1,
-    #     "sclc": 2,
-    #     "lclc": 3,
-    #     "lcfc": 4,
-    #     "fcfc": 5,
-    #     "fcsc": 6,
-    # }
     context = {
         "cross_data": cross_data,
         "mmr_data": mmr_data,
-        "month_data": month_data,
     }
     return render(request, "cross/index.html", context)
 

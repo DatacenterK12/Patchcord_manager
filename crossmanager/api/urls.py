@@ -1,15 +1,14 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import CrossViewSet, HistoryVeiwSet, MmrViewSet, StatisticViewSet
+from .views import CrossViewSet, HistoryAPIView, MmrViewSet
 
 router_v1 = DefaultRouter()
 
 router_v1.register("cross", CrossViewSet, basename="cross")
 router_v1.register("mmr", MmrViewSet, basename="mmr")
-router_v1.register("statistic", StatisticViewSet, basename="statistic")
-router_v1.register("history", HistoryVeiwSet, basename="history")
 
 urlpatterns = [
     path("v1/", include(router_v1.urls)),
+    path("v1/history/", HistoryAPIView.as_view()),
 ]
