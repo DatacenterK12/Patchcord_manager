@@ -1,11 +1,11 @@
 # Create your views here.
-from cross.models import Cross, Mmr, History, Statistic
+from cross.models import Cross, History, Mmr, Statistic
 from rest_framework import viewsets
 
 from .serializers import (
     CrossSerializer,
+    HistoryCountSerializer,
     MmrSerializer,
-    HistorySerializer,
     StatisticSerializer,
 )
 
@@ -31,8 +31,8 @@ class StatisticViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = StatisticSerializer
 
 
-class HistoryVeiwSet(viewsets.ModelViewSet):
+class HistoryVeiwSet(viewsets.ReadOnlyModelViewSet):
     """Возвращает историю использования патчкордов"""
 
-    queryset = History.objects.all()
-    serializer_class = HistorySerializer
+    queryset = History.objects.filter(pk=1)
+    serializer_class = HistoryCountSerializer

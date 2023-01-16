@@ -109,8 +109,7 @@
 
 <script>
     const ctx = document.getElementById('myChart');
-    var data = document.getElementById('test').innerHTML;
-    var dataint = Number.parseInt(data);
+    var data = await fetch("")
     new Chart(ctx, {
       type: 'bar',
       data: {
