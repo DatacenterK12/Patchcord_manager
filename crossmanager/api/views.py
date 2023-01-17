@@ -57,9 +57,9 @@ class HistoryAPIView(APIView):
             .count(),
         }
 
-        ser = {
+        data = {
             "count_fulltime": count_fulltime,
             "count_month": count_month,
         }
-        serializer = HistoryCountSerializer(ser)
+        serializer = HistoryCountSerializer(data)
         return Response(serializer.data)

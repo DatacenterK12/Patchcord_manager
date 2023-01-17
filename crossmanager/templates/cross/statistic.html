@@ -65,12 +65,6 @@
                     {%endfor%}
                 </table>
             </div>
-            <div class="row">
-                <div class="text-center">
-                <!--    <img src={% static "popca2t.gif" %} style="width: 10em">-->
-
-                </div>
-            </div>
         </div>
     </div>
     <div class="container-fluid">
@@ -78,29 +72,15 @@
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
                     <div style="width: 500px;">
-                        <canvas id="myChart"> </canvas>
+                        <canvas id="Chart_fulltime"> </canvas>
                     </div>
                 </div>
                 <div class="col-md-auto">
-                    <table>
-                        <tr>
-                            <th>Тип</th>
-                            <th>Длинна</th>
-                            <th>Дата</th>
-                        </tr>
-                        {%for cross in new_stat_data%}
-                            <tr>
-                                <td>{{cross.name}}</td>
-                                <td>{{cross.length}}</td>
-                                <td>{{cross.date}}</td>
-                            </tr>
-                        {%endfor%}
-                    </table>
+                    <div style="width: 500px;">
+                        <canvas id="Chart_month"> </canvas>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class='fixed-bottom'>
-            {% include 'includes/paginator.html' %}
         </div>
     </div>
 </div>
@@ -108,21 +88,54 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
+    const ctx_month = document.getElementById('Chart_month');
+    const ctx_fulltime = document.getElementById('Chart_fulltime');
     var url = "http://127.0.0.1:8000/api/v1/history/";
-    let response = fetch(url);
-    new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['SC-SC', 'SC-LC', 'LC-LC', 'LC-FC', 'FC-FC', 'FC-SC'],
-        datasets: [{
-        label: '# было использовано',
-        data: [19, 3, 5, 2, 3,1],
-        borderWidth: 1
-        }]
-    },
-    options: {
-    }
-    });
+    var data = fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data_history) => {
+            new Chart(ctx_month, {
+                type: 'bar',
+                data: {
+                    labels: ['SC-SC', 'SC-LC', 'LC-LC', 'LC-FC', 'FC-FC', 'FC-SC'],
+                    datasets: [{
+                    label: 'Было использовано за месяц.',
+                    data: [
+                        data_history.count_month["SC-SC"],
+                        data_history.count_month["SC-LC"],
+                        data_history.count_month["LC-LC"],
+                        data_history.count_month["LC-FC"],
+                        data_history.count_month["FC-FC"],
+                        data_history.count_month["FC-SC"]
+                        ],
+                    borderWidth: 1
+                    }]
+                },
+                options: {
+                }
+            });
+            new Chart(ctx_fulltime, {
+                type: 'bar',
+                data: {
+                    labels: ['SC-SC', 'SC-LC', 'LC-LC', 'LC-FC', 'FC-FC', 'FC-SC'],
+                    datasets: [{
+                    label: 'Было использовано за все время.',
+                    data: [
+                        data_history.count_fulltime["SC-SC"],
+                        data_history.count_fulltime["SC-LC"],
+                        data_history.count_fulltime["LC-LC"],
+                        data_history.count_fulltime["LC-FC"],
+                        data_history.count_fulltime["FC-FC"],
+                        data_history.count_fulltime["FC-SC"]
+                        ],
+                    borderWidth: 1
+                    }]
+                },
+                options: {
+                }
+            });
+        });
 </script>
 {% endblock %}
